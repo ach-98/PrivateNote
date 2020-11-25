@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 
 let User = require("../models/user.model");
 const passport = require('passport');
+const { default: Axios } = require('axios');
 
 router.route('/').get((req, res) => {
     User.find()
@@ -12,6 +13,7 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json("Error: " + err));
 });
 
+// changed
 router.route('/login').post((req, res) => {
 
     const username = req.body.username;
@@ -31,18 +33,18 @@ router.route('/login').post((req, res) => {
                     };
         
                     jwt.sign(
-                        payload,
-                        "secret",
-                        {
+                         payload,
+                         "secret",
+                         {
                             expiresIn: 31556926
-                        },
-                        (err, token) => {
-                            res.json({
-                                success: true,
-                                token: "Bearer" + token
-                            });
-                        }
-                    );
+                         },
+                         (err, token) => {
+                             res.json({
+                                 success: true,
+                                 token: "Bearer" + token
+                             });
+                         }
+                     );
 
                 } else {
                     return res
@@ -75,5 +77,35 @@ router.route('/add').post((req, res) => {
         }
     });
 });
+/*
+router.route('/change').post((req, res) => {
+
+    const username = req.body.username;
+    const currentpassword = req.body.currentpassword;
+    const newpassword = req.body.newpassword;
+
+    User.findOne({username})
+        .then(user => {
+            if (!user) {return res.status(404).json({usernotfound: "User not found" + username});
+        }
+        /*
+        bcrypt.compare(currentpassword, user.password)
+            .then(isMatch => {
+                if (isMatch) {
+                    user = {
+                        user.username: user.username,
+                        user.password: req.body.password
+                    };
+        
+                        
+                } else {
+                    return res
+                        .status(400)
+                        .json({passwordincorrect: "Password incorrect."});
+                }
+        });
+    });
+});
+*/
 
 module.exports = router;

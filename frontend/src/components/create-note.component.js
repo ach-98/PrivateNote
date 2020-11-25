@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import NavBar from './navbar.component';
 
 export default class CreateNote extends Component {
     constructor(props) {
@@ -74,6 +75,7 @@ export default class CreateNote extends Component {
     render() {
         return (
         <div>
+            <NavBar />
             <h3>Create Note</h3>
             <form onSubmit={this.submitNote}>
                 <div className="form-group">
@@ -83,15 +85,6 @@ export default class CreateNote extends Component {
                         className="form-control"
                         value={this.state.username}
                         onChange={this.setUsername}
-                        />
-                </div>
-                <div className="form-group">
-                    <label>Date: </label>
-                    <input type="text"
-                        required
-                        className="form-control"
-                        value={this.state.date}
-                        onChange={this.setDate}
                         />
                 </div>
                 <div className="form-group">
@@ -129,3 +122,13 @@ export default class CreateNote extends Component {
         )
     }
 }
+
+//<div className="form-group">
+//                    <label>Date: </label>
+//                    <input type="text"
+//                        required
+//                        className="form-control"
+//                        value={this.state.date}
+//                        onChange={this.setDate}
+ //                       />
+  //              </div>

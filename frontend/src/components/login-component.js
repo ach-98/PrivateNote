@@ -13,6 +13,7 @@ export default class Login extends Component {
         this.state = {
             username: '',
             password: '',
+            error: ''
         }
     }
 
@@ -36,13 +37,13 @@ export default class Login extends Component {
             password: this.state.password,
         };
 
-        axios.post('http://localhost:7000/users/add', user)
-           .then(res => console.log(res.data))
-           .catch(console.error());
+        axios.post('http://localhost:7000/users/login', user)
+           .then(res => window.location = '/')
+           .catch(err => this.setState({error: 'Invalid login, please try again.'}));
 
         console.log(user);
           
-        window.location = '/';
+        //window.location = '/';
     }
 
     render() {
@@ -68,6 +69,8 @@ export default class Login extends Component {
                             value={this.state.password}
                             onChange={this.setPassword} />
                     </div>
+                    {this.state.error &&
+                    <h7 className='error'>{this.state.error}</h7>}
                     <p className="grey-text text-darken-1">
                 Don't have an account? <Link to="/register">Register</Link>
               </p>

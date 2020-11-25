@@ -1,13 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 
-                //    <li className="navbar-item">
-                //    <Link to ="/user" className="nav-link">Register</Link>
-                //    </li>
-                //    <li className="navbar-item">
-                //    <Link to ="/login" className="nav-link">Login</Link>
-                //    </li>
-
 export default class NavBar extends Component {
     render() {
         return (
@@ -20,6 +13,9 @@ export default class NavBar extends Component {
                     </li>
                     <li className="navbar-item">
                     <Link to ="/create" className="nav-link">Create Note</Link>{''}
+                    </li>
+                    <li className="navbar-item">
+                    <Link to ="/change" className="nav-link">Account</Link>{''}
                     </li>
                     <li className="navbar-item">
                     <Link to ="/login" className="nav-link">Logout</Link>{''}

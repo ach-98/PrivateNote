@@ -13,6 +13,7 @@ export default class CreateUser extends Component {
         this.state = {
             username: '',
             password: '',
+            error: '',
         }
     }
     
@@ -37,16 +38,16 @@ export default class CreateUser extends Component {
         };
 
         axios.post('http://localhost:7000/users/add', user)
-           .then(res => console.log(res.data))
-           .catch(console.error());
+           .then(res => window.location = 'login')
+           .catch(err => this.setState({error: 'Username already taken.'}))
 
         console.log(user);
         
-        window.location = '/';
+        //window.location = '/login';
     }
 
     render() {
-        return (
+        return ( 
             <div className="container">
             <div style={{ marginTop: "4rem" }} className="row">
             <div className="col s8 offset-s2">
@@ -60,6 +61,8 @@ export default class CreateUser extends Component {
                             value={this.state.username}
                             onChange={this.setUsername} />
                     </div>
+                    {this.state.error &&
+                    <h7 className='error'>{this.state.error}</h7>}
                     <div className="form-group">
                         <label>Password: </label>
                         <input type="text"

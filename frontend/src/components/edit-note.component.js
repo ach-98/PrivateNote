@@ -93,24 +93,6 @@ export default class EditNote extends Component {
             <h3>Edit Note</h3>
             <form onSubmit={this.submitNote}>
                 <div className="form-group">
-                    <label>Username: </label>
-                    <input type="text"
-                        required
-                        className="form-control"
-                        value={this.state.username}
-                        onChange={this.setUsername}
-                        />
-                </div>
-                <div className="form-group">
-                    <label>Date: </label>
-                    <input type="text"
-                        required
-                        className="form-control"
-                        value={this.state.date}
-                        onChange={this.setDate}
-                        />
-                </div>
-                <div className="form-group">
                     <label>Title: </label>
                     <input type="text"
                         required
@@ -145,3 +127,23 @@ export default class EditNote extends Component {
         )
     }
 }
+
+//<div className="form-group">
+//                    <label>Username: </label>
+  //                  <input type="text"
+      //                  required
+    //                    className="form-control"
+        //                value={this.state.username}
+          //              onChange={this.setUsername}
+              //          />
+            //    </div>
+
+//<div className="form-group">
+//<label>Date: </label>
+//<input type="text"
+//    required
+//    className="form-control"
+//    value={this.state.date}
+//    onChange={this.setDate}
+//    />
+//</div>
