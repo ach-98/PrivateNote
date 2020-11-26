@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+//import AuthServ from './auth-serv';
 
 export default class Login extends Component {
     constructor(props) {
@@ -36,14 +37,26 @@ export default class Login extends Component {
             username: this.state.username,
             password: this.state.password,
         };
+        var removed = sessionStorage.getItem('user');
+        console.log(removed);
 
         axios.post('http://localhost:7000/users/login', user)
-           .then(res => window.location = '/')
+           .then(res => sessionStorage.setItem('user', user.username))
            .catch(err => this.setState({error: 'Invalid login, please try again.'}));
 
-        console.log(user);
-          
-        //window.location = '/';
+          // window.location='/'
+           //this.setState({error: 'Invalid login, please try again.'})
+         //  window.location='/'
+        //sessionStorage.getItem('user', user.username);
+        var answer = sessionStorage.getItem('user');
+        if (answer !== null)
+        {
+            var secondanswer = sessionStorage.getItem('user');
+            console.log(secondanswer);
+            window.location='/'
+        }
+        console.log(answer);
+        //localStorage.removeItem('user');
     }
 
     render() {
@@ -70,7 +83,7 @@ export default class Login extends Component {
                             onChange={this.setPassword} />
                     </div>
                     {this.state.error &&
-                    <h7 className='error'>{this.state.error}</h7>}
+                      <h7 className='error'>{this.state.error}</h7>}
                     <p className="grey-text text-darken-1">
                 Don't have an account? <Link to="/register">Register</Link>
               </p>
@@ -84,3 +97,6 @@ export default class Login extends Component {
         )
     }
 }
+
+//{this.state.error &&
+  //  <h7 className='error'>{this.state.error}</h7>}

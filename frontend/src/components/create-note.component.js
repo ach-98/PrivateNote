@@ -14,13 +14,14 @@ export default class CreateNote extends Component {
         this.setCategory = this.setCategory.bind(this);
 
         this.state = {
-            username: '',
+            username: sessionStorage.getItem('user'),
             title: '',
             category: '',
             text: '',
             date: new Date(),
         }
     }
+    //JSON.parse(sessionStorage.getItem('user'))
 
     setUsername(e) {
         this.setState({
@@ -79,15 +80,6 @@ export default class CreateNote extends Component {
             <h3>Create Note</h3>
             <form onSubmit={this.submitNote}>
                 <div className="form-group">
-                    <label>Username: </label>
-                    <input type="text"
-                        required
-                        className="form-control"
-                        value={this.state.username}
-                        onChange={this.setUsername}
-                        />
-                </div>
-                <div className="form-group">
                     <label>Title: </label>
                     <input type="text"
                         required
@@ -122,6 +114,17 @@ export default class CreateNote extends Component {
         )
     }
 }
+//<div className="form-group">
+//                    <label>Username: </label>
+ //                   <input type="text"
+//                        required
+ //                       className="form-control"
+ //                       value={this.state.username}
+ //                       onChange={this.setUsername}
+  //                      />
+ //               </div>
+
+
 
 //<div className="form-group">
 //                    <label>Date: </label>

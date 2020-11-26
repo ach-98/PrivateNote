@@ -18,7 +18,7 @@ export default class NavBar extends Component {
                     <Link to ="/change" className="nav-link">Account</Link>{''}
                     </li>
                     <li className="navbar-item">
-                    <Link to ="/login" className="nav-link">Logout</Link>{''}
+                    <Link to ="/logout" className="nav-link">Logout</Link>{''}
                     </li>
                 </ul>   
                 </div>

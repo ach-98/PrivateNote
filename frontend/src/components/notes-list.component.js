@@ -30,7 +30,10 @@ export default class NotesList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:7000/notes/')
+        //var june = JSON.parse(sessionStorage.getItem('user'));
+        var name = sessionStorage.getItem('user');
+        //JSON.parse(sessionStorage.getItem('user'))
+        axios.get('http://localhost:7000/notes/', {params: {username: name}})
             .then(response => {
                 this.setState({notes: response.data})
             })
@@ -126,7 +129,7 @@ export default class NotesList extends Component {
                 </select>
                 </h5>
                 <table className="table">
-                    <thead className="thead-dark">
+                    <thead className="thead-light">
                     <tr>
                     <th>Title</th>
                     <th>Category</th>

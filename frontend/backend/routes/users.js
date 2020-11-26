@@ -5,9 +5,14 @@ const jwt = require('jsonwebtoken');
 
 let User = require("../models/user.model");
 const passport = require('passport');
-const { default: Axios } = require('axios');
 
 router.route('/').get((req, res) => {
+    User.find()
+    .then(users => res.json(users))
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
+router.route('/logout').post((req, res) => {
     User.find()
     .then(users => res.json(users))
     .catch(err => res.status(400).json("Error: " + err));
@@ -30,7 +35,7 @@ router.route('/login').post((req, res) => {
                     const payload = {
                         id: user.id,
                         username: user.username
-                    };
+                    }; 
         
                     jwt.sign(
                          payload,
@@ -64,7 +69,7 @@ router.route('/add').post((req, res) => {
                 username: req.body.username,
                 password: req.body.password
             });
-    
+            
         bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(newUser.password, salt, (err, hash) => {
                 if (err) throw err;
@@ -77,7 +82,7 @@ router.route('/add').post((req, res) => {
         }
     });
 });
-/*
+
 router.route('/change').post((req, res) => {
 
     const username = req.body.username;
@@ -88,24 +93,32 @@ router.route('/change').post((req, res) => {
         .then(user => {
             if (!user) {return res.status(404).json({usernotfound: "User not found" + username});
         }
-        /*
+        
         bcrypt.compare(currentpassword, user.password)
             .then(isMatch => {
                 if (isMatch) {
-                    user = {
-                        user.username: user.username,
-                        user.password: req.body.password
-                    };
-        
+    
+                    user.username = user.username;
+                    user.password = newpassword;
+                
+
+                    bcrypt.genSalt(10, (err, salt) => {
+                        bcrypt.hash(user.password, salt, (err, hash) => {
+                            if (err) throw err;
+                            user.password = hash;
+                            user.save()
+                                .then(() => res.json('User account updated!'))
+                                .catch(err => res.status(400).json('Error: ' + err));
+                        });
+                    });
                         
                 } else {
                     return res
                         .status(400)
                         .json({passwordincorrect: "Password incorrect."});
                 }
-        });
+        }); 
     });
 });
-*/
 
 module.exports = router;

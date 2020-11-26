@@ -2,7 +2,7 @@ const router = require('express').Router();
 let Note = require('../models/notes.model');
 
 router.route('/').get((req, res) => {
-    Note.find()
+    Note.find({username: req.query.username})
         .then(notes => res.json(notes))
         .catch(err => res.status(400).json('Error: ' + err));
 });

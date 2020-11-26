@@ -12,6 +12,8 @@ import CreateNote from "./components/create-note.component";
 import CreateUser from "./components/create-user.component";
 import Login from "./components/login-component";
 import ChangePassword from "./components/change-password.component";
+import PrivateRoute from "./components/private-route.component";
+import Logout from "./components/logout-component";
 
 function App () {
 
@@ -19,10 +21,11 @@ function App () {
     <Router>
       <Route path="/login" exact component={Login} />
       <Route path="/register" exact component={CreateUser} />
-      <Route path="/" exact component={NotesList} />
-      <Route path="/edit/:id" exact component={EditNote} />
-      <Route path="/create" exact component={CreateNote} />
-      <Route path="/change" exact component={ChangePassword} />
+      <PrivateRoute path="/" exact component={NotesList} />
+      <PrivateRoute path="/edit/:id" exact component={EditNote} />
+      <PrivateRoute path="/create" exact component={CreateNote} />
+      <PrivateRoute path="/change" exact component={ChangePassword} />
+      <PrivateRoute path="/logout" exact component={Logout} />
     </Router>
   );
 }
