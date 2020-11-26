@@ -44,10 +44,6 @@ export default class Login extends Component {
            .then(res => sessionStorage.setItem('user', user.username))
            .catch(err => this.setState({error: 'Invalid login, please try again.'}));
 
-          // window.location='/'
-           //this.setState({error: 'Invalid login, please try again.'})
-         //  window.location='/'
-        //sessionStorage.getItem('user', user.username);
         var answer = sessionStorage.getItem('user');
         if (answer !== null)
         {

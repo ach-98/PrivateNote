@@ -17,6 +17,7 @@ export default class Logout extends Component {
             .then(response => sessionStorage.removeItem('user'))
             .catch(error => console.log(error))
 
+        sessionStorage.removeItem('user');
         window.location='/logout';
     }
 
