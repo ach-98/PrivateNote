@@ -89,7 +89,7 @@ export default class EditNote extends Component {
 
     render() {
         return (
-        <div>
+        <div className="container" style={{marginTop: "2rem" ,marginLeft: "auto", marginRight: "auto"}}>
             <h3>Edit Note</h3>
             <form onSubmit={this.submitNote}>
                 <div className="form-group">

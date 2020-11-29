@@ -77,6 +77,7 @@ export default class CreateNote extends Component {
         return (
         <div>
             <NavBar />
+            <div className="container" style={{marginTop: "2rem" ,marginLeft: "auto", marginRight: "auto"}}>
             <h3>Create Note</h3>
             <form onSubmit={this.submitNote}>
                 <div className="form-group">
@@ -110,6 +111,7 @@ export default class CreateNote extends Component {
                     <input type="submit" value="Create Note" className="btn btn-primary"/>
                 </div>
             </form>
+            </div>
         </div>
         )
     }

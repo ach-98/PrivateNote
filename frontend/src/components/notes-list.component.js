@@ -119,33 +119,32 @@ export default class NotesList extends Component {
         return (
             <div>
                 <NavBar />
-                <h3>Notes List</h3>
-                <h5>Sort by:  
+                <div className="container" style={{marginTop: "5rem", textAlign: "center"}}>
+                <h4>Notes List:</h4>
+                <div className="container" style={{textAlign: "right"}}>
+                <h7>Sort by:  
                 <select onChange={(e) => this.sortArray(e.target.value)}>
                     <option value="select">Select..</option>
                     <option value="title">Title</option>
                     <option value="date">Date Created</option>
                     <option value="category">Category</option>
                 </select>
-                </h5>
-                <table className="table">
-                    <thead className="thead-light">
+                </h7>
+                </div>
+                <table className="table" style={{marginTop: "2rem", textAlign: "left"}}>
+                    <thead className="thead" style={{backgroundColor: "aliceblue"}}>
                     <tr>
                     <th>Title</th>
                     <th>Category</th>
                     <th>Text</th>
                     <th>Date Created</th>
-                    <th> </th>
+                    <th>Options</th>
                     </tr>
                     </thead>
                     <tbody>{this.noteList()}</tbody>
                 </table>
             </div>
+            </div>
         )
     }
 }
-
-//| <a href="#" onClick={() => {props.deleteNote(props.note._id)}}>delete</a>
-//<Link to={"/edit/"+props.note._id}>edit</Link> | <a href="#" onClick={() => {props.deleteNote(props.note._id)}}>delete</a>
-//<th>Username</th>
-//<td>{props.note.username}</td>

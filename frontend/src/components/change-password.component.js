@@ -56,6 +56,7 @@ export default class ChangePassword extends Component {
         return (
         <div>
             <NavBar />
+            <div className="container" style={{marginTop: "2rem" ,marginLeft: "auto", marginRight: "auto"}}>
             <h3>Change Password</h3>
             <form onSubmit={this.submitChange}>
                 <div className="form-group">
@@ -89,6 +90,7 @@ export default class ChangePassword extends Component {
                     <input type="submit" value="Submit" className="btn btn-primary"/>
                 </div>
             </form>
+        </div>
         </div>
         )
     }

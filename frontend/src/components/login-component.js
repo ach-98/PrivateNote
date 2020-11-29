@@ -57,12 +57,13 @@ export default class Login extends Component {
 
     render() {
         return (
-            <div className="container">
-            <div style={{ marginTop: "4rem" }} className="row">
-            <div className="col s8 offset-s2">
+            <div className="header" style={{marginTop: "5rem", textAlign: "center"}}>
+            <h3>Welcome to Private Notes</h3>
+            <div className="card card-container" style={{ marginTop: "3rem", marginLeft: "38rem", marginRight: "38rem", backgroundColor: "aliceblue"}}>
+            <div style={{ marginTop: "1rem", marginLeft: "1rem", marginRight: "1rem", marginBottom: "1rem"}} className="column">
                 <h3>Login</h3>
                 <form onSubmit={this.submitUser}>
-                    <div className="form-group">
+                    <div className="form-group" style={{textAlign: "left"}}>
                         <label>Username: </label>
                         <input type="text"
                             required
@@ -70,7 +71,7 @@ export default class Login extends Component {
                             value={this.state.username}
                             onChange={this.setUsername} />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group" style={{textAlign: "left"}}>
                         <label>Password: </label>
                         <input type="text"
                             required
@@ -89,7 +90,7 @@ export default class Login extends Component {
                 </form>
                 </div>
                 </div>
-            </div>
+                </div>
         )
     }
 }

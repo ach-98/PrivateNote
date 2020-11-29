@@ -4,10 +4,10 @@ import {Link} from 'react-router-dom';
 export default class NavBar extends Component {
     render() {
         return (
-            <nav className="navbar navbar-light bg-light navbar-expand-lg">
+            <nav className="navbar navbar-light navbar-expand-lg" style={{backgroundColor: "aliceblue"}}>
                 <Link to ="/" className="navbar-brand">PrivateNotes</Link>
                 <div className="collapse navbar-collapse">
-                <ul className="navbar-nav mr-auto">
+                <ul className="navbar-nav ml-auto">
                     <li className="navbar-item">
                     <Link to ="/" className="nav-link">Notes</Link>{''}
                     </li>
@@ -17,7 +17,7 @@ export default class NavBar extends Component {
                     <li className="navbar-item">
                     <Link to ="/change" className="nav-link">Account</Link>{''}
                     </li>
-                    <li className="navbar-item">
+                    <li className="navbar-item" style={{float: "right"}}>
                     <Link to ="/logout" className="nav-link">Logout</Link>{''}
                     </li>
                 </ul>   
