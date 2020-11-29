@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-//import AuthServ from './auth-serv';
 
 export default class Login extends Component {
     constructor(props) {
@@ -18,18 +17,21 @@ export default class Login extends Component {
         }
     }
 
+    // Sets username based on user input.
     setUsername(e) {
         this.setState({
             username: e.target.value
         });
     }
 
+    // Sets password based on user input.
     setPassword(e) {
         this.setState({
             password: e.target.value
         });
     }
 
+    // After user clicks submit, verifies login credentials.
     submitUser(e) {
         e.preventDefault();
 
@@ -37,22 +39,22 @@ export default class Login extends Component {
             username: this.state.username,
             password: this.state.password,
         };
-        var removed = sessionStorage.getItem('user');
-        console.log(removed);
 
+        // Checks login credentials to database user credentials.
         axios.post('http://localhost:7000/users/login', user)
            .then(res => sessionStorage.setItem('user', user.username))
            .catch(err => this.setState({error: 'Invalid login, please try again.'}));
 
+        // If successful login, user authenticated and put in session storage.
         var answer = sessionStorage.getItem('user');
+
+        // User logged in successfully and taken to notes page. Otherwise, login error message.
         if (answer !== null)
         {
             var secondanswer = sessionStorage.getItem('user');
             console.log(secondanswer);
             window.location='/'
         }
-        console.log(answer);
-        //localStorage.removeItem('user');
     }
 
     render() {
@@ -94,6 +96,3 @@ export default class Login extends Component {
         )
     }
 }
-
-//{this.state.error &&
-  //  <h7 className='error'>{this.state.error}</h7>}

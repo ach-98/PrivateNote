@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const passport = require('passport');
 
 require('dotenv').config();
 
@@ -11,6 +10,7 @@ const port = process.env.PORT || 7000;
 webApp.use(cors());
 webApp.use(express.json());
 
+// Next few lines establish connection to MongoDB database.
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true});
 
@@ -20,12 +20,11 @@ connection.once('open', () => {
     console.log("MongoDB database connection established successfully");
 })
 
-webApp.use(passport.initialize());
-//require('passport')(passport);
-
+// Connects routes.
 const usersRouter = require('./routes/users');
 const notesRouter = require('./routes/notes');
 
+// Tells app to use the routes.
 webApp.use('/notes', notesRouter);
 webApp.use('/users', usersRouter);
 

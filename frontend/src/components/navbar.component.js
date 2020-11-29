@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 
+// Navbar contains links to note list, new note, change password, and to logout.
 export default class NavBar extends Component {
     render() {
         return (

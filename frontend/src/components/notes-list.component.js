@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import NavBar from './navbar.component';
-//import qs from 'qs';
 
+// Controls how notes look in webpage in table as well as edit and delete buttons.
 const Note = props => (
     <tr>
         <td>{props.note.title}</td>
@@ -21,18 +21,14 @@ export default class NotesList extends Component {
         super(props);
 
         this.deleteNote = this.deleteNote.bind(this);
-        this.sortTitle = this.sortTitle.bind(this);
-        this.sortCategory = this.sortCategory.bind(this);
-        this.sortDate = this.sortDate.bind(this);
         this.sortArray = this.sortArray.bind(this);
 
         this.state = {notes: []}
     }
 
+    // Loads only notes for the specific user.
     componentDidMount() {
-        //var june = JSON.parse(sessionStorage.getItem('user'));
         var name = sessionStorage.getItem('user');
-        //JSON.parse(sessionStorage.getItem('user'))
         axios.get('http://localhost:7000/notes/', {params: {username: name}})
             .then(response => {
                 this.setState({notes: response.data})
@@ -40,6 +36,7 @@ export default class NotesList extends Component {
             .catch(error => console.log(error))
     }
 
+    // Deletes a note from the user's note page and the database.
     deleteNote(id) {
         axios.delete('http://localhost:7000/notes/' + id)
             .then(res => console.log(res.data));
@@ -48,42 +45,17 @@ export default class NotesList extends Component {
         })
     }
 
+    // Maps each note's components to the correct part in the note list.
     noteList() {
         return this.state.notes.map(currentnote => {
             return <Note note={currentnote} deleteNote={this.deleteNote} key={currentnote._id}/>;
         })
     }
 
-    
-    sortTitle() {
-        const sortedNotes = [...this.state.notes].sort((a,b) => {
-            if (a.title < b.title) return -1;
-            if (a.title > b.title) return 1;
-            return 0;
-        });
-        this.setState({notes : sortedNotes});
-    }
-
-    sortCategory() {
-        const sortedNotes = [...this.state.notes].sort((a,b) => {
-            if (a.category < b.category) return -1;
-            if (a.category > b.category) return 1;
-            return 0;
-        });
-        this.setState({notes : sortedNotes});
-    }
-
-    sortDate() {
-        const sortedNotes = [...this.state.notes].sort((a,b) => {
-            if (a.date < b.date) return -1;
-            if (a.date > b.date) return 1;
-            return 0;
-        });
-        this.setState({notes : sortedNotes});
-    }
-
+    // Determines how to sort the notes based on user input.
     sortArray(e) 
     {
+        // Sorts the notes by title alphabetically.
         if (e == "title")
         {
             const sortedNotes = [...this.state.notes].sort((a,b) => {
@@ -94,6 +66,7 @@ export default class NotesList extends Component {
             this.setState({notes : sortedNotes});
         }
 
+        // Sorts the notes by category alphabetically.
         if (e == "category")
         {
             const sortedNotes = [...this.state.notes].sort((a,b) => {
@@ -104,6 +77,7 @@ export default class NotesList extends Component {
             this.setState({notes : sortedNotes});
         }
 
+        // Sort the notes by the date they were created. Newest to oldest.
         if (e == "date")
         {
             const sortedNotes = [...this.state.notes].sort((a,b) => {

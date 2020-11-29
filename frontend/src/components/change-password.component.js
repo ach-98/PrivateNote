@@ -18,24 +18,28 @@ export default class ChangePassword extends Component {
         }
     }
 
+    // Takes username input from user.
     setUsername(e) {
         this.setState({
             username: e.target.value
         });
     }
 
+    // Takes current password input from user.
     setCurrPassword(e) {
         this.setState({
             currentpassword: e.target.value
         });
     }
 
+    // Takes input from user for new password.
     setNewPassword(e) {
         this.setState({
             newpassword: e.target.value
         });
     }
 
+    // Changes user password if old login credentials match.
     submitChange(e) {
         e.preventDefault();
 
@@ -45,6 +49,7 @@ export default class ChangePassword extends Component {
             newpassword: this.state.newpassword
         };
 
+        // Checks for correct login credentials and if successful, changes password.
         axios.post('http://localhost:7000/users/change', user)
            .then(res => window.location = '/')
            .catch(err => this.setState({error: 'Incorrect password.'}));

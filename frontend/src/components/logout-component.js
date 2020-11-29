@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-//import {Link} from 'react-router-dom';
 import axios from 'axios';
 
+// Logs the user out of the app.
 export default class Logout extends Component {
     constructor(props) {
         super(props)
@@ -11,12 +11,13 @@ export default class Logout extends Component {
         }
     }
 
+    // Logs the user out of the app and returns to the login page. 
     componentDidMount(e) {
-        //e.preventDefault();
         axios.post('http://localhost:7000/users/logout')
             .then(response => sessionStorage.removeItem('user'))
             .catch(error => console.log(error))
 
+        // Removes user from session storage so no longer authenticated.
         sessionStorage.removeItem('user');
         window.location='/logout';
     }

@@ -21,38 +21,43 @@ export default class CreateNote extends Component {
             date: new Date(),
         }
     }
-    //JSON.parse(sessionStorage.getItem('user'))
 
+    // Sets username for the specified note to retrieve from database.
     setUsername(e) {
         this.setState({
             username: e.target.value
         });
     }
 
+    // Sets note message specified by user.
     setText(e) {
         this.setState({
             text: e.target.value
         });
     }
 
+    // Sets note title specified by user.
     setTitle(e) {
         this.setState({
             title: e.target.value
         });
     }
 
+    // Sets category specified by user.
     setCategory(e) {
         this.setState({
             category: e.target.value
         });
     }
 
+    // Sets the current date and time.
     setDate(e) {
         this.setState({
             date: e.target.value
         });
     }
 
+    // Submits note to save to the database.
     submitNote(e) {
         e.preventDefault();
 
@@ -64,12 +69,14 @@ export default class CreateNote extends Component {
             date: this.state.date
         };
 
+        // Saves note to the database.
         axios.post('http://localhost:7000/notes/add', note)
            .then(res => console.log(res))
            .catch(console.error());
 
         console.log(note);
         
+        // Success note creation redirects back to note list.
         window.location = '/';
     }
 
@@ -116,24 +123,3 @@ export default class CreateNote extends Component {
         )
     }
 }
-//<div className="form-group">
-//                    <label>Username: </label>
- //                   <input type="text"
-//                        required
- //                       className="form-control"
- //                       value={this.state.username}
- //                       onChange={this.setUsername}
-  //                      />
- //               </div>
-
-
-
-//<div className="form-group">
-//                    <label>Date: </label>
-//                    <input type="text"
-//                        required
-//                        className="form-control"
-//                        value={this.state.date}
-//                        onChange={this.setDate}
- //                       />
-  //              </div>

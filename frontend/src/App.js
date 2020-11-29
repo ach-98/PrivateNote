@@ -2,10 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
-//import PrivateRoute from 'private-route';
-//import {Switch} from 'react-router';
 
-//import NavBar from "./components/navbar.component";
 import NotesList from "./components/notes-list.component";
 import EditNote from "./components/edit-note.component";
 import CreateNote from "./components/create-note.component";
@@ -15,6 +12,7 @@ import ChangePassword from "./components/change-password.component";
 import PrivateRoute from "./components/private-route.component";
 import Logout from "./components/logout-component";
 
+// Routes for the web application. Only logged in users can access the private routes.
 function App () {
 
   return (

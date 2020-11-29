@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 
+// Adds new user to the database.
 export default class CreateUser extends Component {
     constructor(props) {
         super(props)
@@ -17,18 +18,21 @@ export default class CreateUser extends Component {
         }
     }
     
+    // Sets username for new user.
     setUsername(e) {
         this.setState({
             username: e.target.value
         });
     }
 
+    // Sets password for new user.
     setPassword(e) {
         this.setState({
             password: e.target.value
         });
     }
 
+    // Saves new user credentials and sends to the database.
     submitUser(e) {
         e.preventDefault();
 
@@ -37,13 +41,11 @@ export default class CreateUser extends Component {
             password: this.state.password,
         };
 
+        // Creates a new user in the database. Checks for repeat username.
+        // Sent to login page if new account created successfully.
         axios.post('http://localhost:7000/users/add', user)
            .then(res => window.location = '/login')
            .catch(err => this.setState({error: 'Username already taken.'}))
-
-        console.log(user);
-        
-        //window.location = '/login';
     }
 
     render() {

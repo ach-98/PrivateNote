@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// Each user account requires a unique username and password.
+// Both must be at least 2 characters in length.
 const userSchema = new Schema({
     username: {
         type: String,

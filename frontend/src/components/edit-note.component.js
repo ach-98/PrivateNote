@@ -21,6 +21,7 @@ export default class EditNote extends Component {
         }
     }
 
+    // Loads note into specified boxes to be edited by user.
     componentDidMount() {
         axios.get('http://localhost:7000/notes/' + this.props.match.params.id)
             .then(response => {
@@ -37,36 +38,42 @@ export default class EditNote extends Component {
             })
     }
 
+    // Sets new username if changed by user.
     setUsername(e) {
         this.setState({
             username: e.target.value
         });
     }
 
+    // Sets new text of note if changed by user.
     setText(e) {
         this.setState({
             text: e.target.value
         });
     }
 
+    // Sets new title if changed by user.
     setTitle(e) {
         this.setState({
             title: e.target.value
         });
     }
 
+    // Sets new category if changed by user.
     setCategory(e) {
         this.setState({
             category: e.target.value
         });
     }
 
+    // Date created is not changed by user.
     setDate(e) {
         this.setState({
             date: e.target.value
         });
     }
 
+    // Submits note changes set by the user.
     submitNote(e) {
         e.preventDefault();
 
@@ -78,12 +85,14 @@ export default class EditNote extends Component {
             date: this.state.date
         };
 
+        // Sends note changes to be saved to the database.
         axios.post('http://localhost:7000/notes/update/'+this.props.match.params.id, note)
            .then(res => console.log(res))
            .catch(console.error());
 
         console.log(note);
         
+        // Once changes are saved, sent back to note list page.
         window.location = '/';
     }
 
@@ -127,23 +136,3 @@ export default class EditNote extends Component {
         )
     }
 }
-
-//<div className="form-group">
-//                    <label>Username: </label>
-  //                  <input type="text"
-      //                  required
-    //                    className="form-control"
-        //                value={this.state.username}
-          //              onChange={this.setUsername}
-              //          />
-            //    </div>
-
-//<div className="form-group">
-//<label>Date: </label>
-//<input type="text"
-//    required
-//    className="form-control"
-//    value={this.state.date}
-//    onChange={this.setDate}
-//    />
-//</div>
